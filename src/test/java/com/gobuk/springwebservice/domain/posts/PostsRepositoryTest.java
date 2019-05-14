@@ -1,5 +1,6 @@
 package com.gobuk.springwebservice.domain.posts;
 
+import com.gobuk.springwebservice.dto.posts.PostMainResponseDto;
 import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Test;
@@ -10,9 +11,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -38,9 +41,9 @@ public class PostsRepositoryTest {
 
         List<Posts> postsList = postsRepository.findAll();
         //then
-        Posts findPost = postsList.get(0);
-        assertThat(findPost.getTitle(),is("테스트 게시글"));
-        assertThat(findPost.getContent(),is("테스트 내용"));
+        Posts findPost = postsList.get(2);
+        assertThat(findPost.getTitle()).isEqualTo("테스트 게시글");
+        assertThat(findPost.getContent()).isEqualTo("테스트 내용");
     }
 
     @Test
